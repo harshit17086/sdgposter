@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Birla Institute of Applied Sciences</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        min-height: 100vh;
+        background: radial-gradient(
+          ellipse at center,
+          #1a223a 0%,
+          #090a1a 100%
+        );
+        color: #fff;
+        font-family: "Roboto", Arial, sans-serif;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .poster {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .neon-ring {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 480px;
+        height: 480px;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        box-shadow: 0 0 60px 10px #00eaff, 0 0 200px 40px #00eaff44 inset;
+        border: 4px solid #00eaff88;
+        animation: ringPulse 15s infinite linear;
+        z-index: 1;
+      }
+      @keyframes ringPulse {
+        0% {
+          box-shadow: 0 0 60px 10px #00eaff, 0 0 200px 40px #00eaff44 inset;
+          transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        }
+        50% {
+          box-shadow: 0 0 90px 20px #00eaff, 0 0 300px 80px #00eaff33 inset;
+          transform: translate(-50%, -50%) scale(1.05) rotate(180deg);
+        }
+        100% {
+          box-shadow: 0 0 60px 10px #00eaff, 0 0 200px 40px #00eaff44 inset;
+          transform: translate(-50%, -50%) scale(1) rotate(360deg);
+        }
+      }
+      .grid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 39px,
+            #00eaff11 40px
+          ),
+          repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 39px,
+            #00eaff11 40px
+          );
+        z-index: 0;
+        pointer-events: none;
+        animation: gridFlow 3s infinite linear;
+        background-size: 40px 40px;
+      }
+      @keyframes gridFlow {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: 40px 40px;
+        }
+      }
+      .content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: 340px;
+        animation: floating 6s ease-in-out infinite;
+      }
+      @keyframes floating {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+      .header {
+        font-family: "Orbitron", Arial, sans-serif;
+        font-size: 2.2rem;
+        letter-spacing: 2px;
+        color: #fff;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 0 12px #00eaff, 0 0 32px #00eaff44;
+        animation: fadeInDown 1.2s, textPulse 4s infinite alternate;
+      }
+      @keyframes textPulse {
+        0% {
+          text-shadow: 0 0 12px #00eaff, 0 0 32px #00eaff44;
+        }
+        50% {
+          text-shadow: 0 0 25px #00eaff, 0 0 50px #00eaff66;
+        }
+        100% {
+          text-shadow: 0 0 12px #00eaff, 0 0 32px #00eaff44;
+        }
+      }
+      .event-title {
+        font-family: "Orbitron", Arial, sans-serif;
+        font-size: 3.2rem;
+        color: #ff3c6e;
+        letter-spacing: 3px;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 0 18px #ff3c6e, 0 0 32px #ff3c6e44;
+        animation: fadeIn 1.5s, titlePulse 3s infinite alternate;
+      }
+      @keyframes titlePulse {
+        0% {
+          text-shadow: 0 0 18px #ff3c6e, 0 0 32px #ff3c6e44;
+        }
+        50% {
+          text-shadow: 0 0 30px #ff3c6e, 0 0 60px #ff3c6e66;
+        }
+        100% {
+          text-shadow: 0 0 18px #ff3c6e, 0 0 32px #ff3c6e44;
+        }
+      }
+      .event-round {
+        font-family: "Orbitron", Arial, sans-serif;
+        font-size: 2.2rem;
+        color: #00eaff;
+        margin-bottom: 2rem;
+        text-shadow: 0 0 12px #00eaff, 0 0 32px #00eaff44;
+        animation: fadeIn 1.8s, textPulse 5s infinite alternate;
+      }
+      .details {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+        color: #fff;
+        text-shadow: 0 0 8px #fff2;
+        animation: fadeInUp 2s;
+      }
+      .highlight {
+        color: #ffe066;
+        font-weight: bold;
+        text-shadow: 0 0 10px #ffe066cc;
+      }
+      .venue {
+        color: #00eaff;
+        font-weight: bold;
+        text-shadow: 0 0 10px #00eaffcc;
+      }
+      /* Logos at bottom left */
+      .logos-bottom-left {
+        position: absolute;
+        left: 40px;
+        bottom: 40px;
+        display: flex;
+        align-items: center;
+        z-index: 3;
+        gap: 18px;
+        background: rgba(10, 20, 40, 0.7);
+        border-radius: 16px;
+        padding: 10px 18px 10px 10px;
+        box-shadow: 0 0 16px #00eaff33;
+      }
+      .logos-bottom-left img {
+        height: 48px;
+        width: auto;
+        display: block;
+        background: #fff;
+        border-radius: 8px;
+        object-fit: contain;
+        box-shadow: 0 0 8px #00eaff44;
+      }
+      .logos-bottom-left img.birla {
+        background: #fff;
+        padding: 2px 6px;
+      }
+      .logos-bottom-left img.university {
+        background: #fff;
+        padding: 2px 6px;
+      }
+      /* SDG Goals logo bottom right */
+      .sdggoals-container {
+        position: absolute;
+        bottom: 40px;
+        right: 40px;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .sdggoals-bg {
+        background: rgba(10, 20, 40, 0.85);
+        border-radius: 50%;
+        padding: 56px;
+        box-shadow: 0 0 48px 12px #fff, 0 0 96px 24px #00eaff33;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: sdgGlow 20s infinite linear;
+      }
+      @keyframes sdgGlow {
+        0% {
+          box-shadow: 0 0 48px 12px #fff, 0 0 96px 24px #00eaff33;
+        }
+        50% {
+          box-shadow: 0 0 80px 24px #fff, 0 0 120px 30px #00eaff66;
+        }
+        100% {
+          box-shadow: 0 0 48px 12px #fff, 0 0 96px 24px #00eaff33;
+        }
+      }
+      .sdggoals-img {
+        height: 180px;
+        width: auto;
+        filter: drop-shadow(0 0 24px #fff) brightness(1.2) contrast(1.1);
+        /* Remove the imageRotate animation */
+      }
+      .organized {
+        position: absolute;
+        left: 40px;
+        bottom: 100px;
+        font-size: 1.1rem;
+        color: #fff8;
+        letter-spacing: 1px;
+        text-align: left;
+        z-index: 2;
+        animation: fadeInLeft 2.2s, organizedGlow 4s infinite alternate;
+      }
+      @keyframes organizedGlow {
+        0% {
+          text-shadow: 0 0 5px #fff4;
+        }
+        50% {
+          text-shadow: 0 0 10px #00eaff88;
+        }
+        100% {
+          text-shadow: 0 0 5px #fff4;
+        }
+      }
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.98);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      /* Particle (star) style */
+      .star {
+        position: absolute;
+        border-radius: 50%;
+        background: #fff;
+        opacity: 0.7;
+        pointer-events: none;
+        z-index: 0;
+        animation: twinkle 2.5s infinite alternate;
+      }
+      @keyframes twinkle {
+        0% {
+          opacity: 0.2;
+          transform: scale(0.8);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+        100% {
+          opacity: 0.2;
+          transform: scale(0.8);
+        }
+      }
+      @media (max-width: 900px) {
+        .sdggoals-container {
+          bottom: 10px;
+          right: 10px;
+        }
+        .sdggoals-bg {
+          padding: 20px;
+        }
+        .sdggoals-img {
+          height: 90px;
+        }
+        .logos-bottom-left {
+          left: 10px;
+          bottom: 10px;
+          padding: 6px 10px 6px 6px;
+        }
+        .logos-bottom-left img {
+          height: 32px;
+        }
+        .organized {
+          left: 10px;
+          bottom: 60px;
+          font-size: 0.9rem;
+        }
+      }
+      @media (max-width: 600px) {
+        .neon-ring {
+          width: 90vw;
+          height: 90vw;
+          min-width: 220px;
+          min-height: 220px;
+        }
+        .content {
+          min-width: 0;
+        }
+        .header {
+          font-size: 1.2rem;
+        }
+        .event-title {
+          font-size: 2rem;
+        }
+        .event-round {
+          font-size: 1.2rem;
+        }
+      }
+      .logos-top-left {
+        position: absolute;
+        top: 40px;
+        left: 40px;
+        display: flex;
+        align-items: center;
+        z-index: 3;
+        gap: 18px;
+        background: rgba(10, 20, 40, 0.7);
+        border-radius: 16px;
+        padding: 10px 18px 10px 10px;
+        box-shadow: 0 0 16px #00eaff33;
+      }
+      .logos-top-left img {
+        height: 56px;
+        width: auto;
+        display: block;
+        background: #fff;
+        border-radius: 8px;
+        object-fit: contain;
+        box-shadow: 0 0 8px #00eaff44;
+        transition: transform 0.3s;
+      }
+      .logos-top-left img:hover {
+        animation: logoPulse 2s infinite;
+      }
+      @keyframes logoPulse {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 0 8px #00eaff44;
+        }
+        50% {
+          transform: scale(1.05);
+          box-shadow: 0 0 16px #00eaff88;
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 8px #00eaff44;
+        }
+      }
+      .logos-top-left img.birla {
+        background: #fff;
+        padding: 2px 6px;
+      }
+      .logos-top-left img.university {
+        background: #fff;
+        padding: 2px 6px;
+      }
+      .logos-top-left img.additional-logo {
+        background: #fff;
+        padding: 2px 6px;
+      }
+      /* Make SDG Goals image bigger */
+      .sdggoals-container {
+        position: absolute;
+        bottom: 40px;
+        right: 40px;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .sdggoals-bg {
+        background: rgba(10, 20, 40, 0.85);
+        border-radius: 50%;
+        padding: 56px;
+        box-shadow: 0 0 48px 12px #fff, 0 0 96px 24px #00eaff33;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .sdggoals-img {
+        height: 180px;
+        width: auto;
+        filter: drop-shadow(0 0 24px #fff) brightness(1.2) contrast(1.1);
+      }
+      @media (max-width: 900px) {
+        .logos-top-left {
+          top: 10px;
+          left: 10px;
+          padding: 6px 10px 6px 6px;
+        }
+        .logos-top-left img {
+          height: 32px;
+        }
+        .sdggoals-container {
+          bottom: 10px;
+          right: 10px;
+        }
+        .sdggoals-bg {
+          padding: 20px;
+        }
+        .sdggoals-img {
+          height: 90px;
+        }
+      }
+      /* Add cyberpunk-like scan lines */
+      .scan-lines {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          transparent 50%,
+          rgba(0, 234, 255, 0.03) 50%
+        );
+        background-size: 100% 4px;
+        z-index: 10;
+        pointer-events: none;
+        opacity: 0.3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="poster">
+      <div class="grid"></div>
+      <div class="neon-ring"></div>
+      <!-- LOGOS TOP LEFT -->
+      <div class="logos-top-left">
+        <img
+          src="assets/universitylogo.png"
+          alt="University Logo"
+          class="university"
+        />
+        <img src="assets/birla-logo.png" alt="Birla Logo" class="birla" />
+        <img
+          src="assets/image.png"
+          alt="Additional Logo"
+          class="additional-logo"
+        />
+      </div>
+      <!-- SDG GOALS BOTTOM RIGHT, BIGGER -->
+      <div class="sdggoals-container">
+        <div class="sdggoals-bg">
+          <img src="assets/sdggoals.png" alt="SDG Goals" class="sdggoals-img" />
+        </div>
+      </div>
+      <div class="content">
+        <div class="header">Birla Institute of Applied Sciences</div>
+        <div class="event-title">UTKARSH 1.0</div>
+        <div class="event-round">PRE-FINAL ROUND</div>
+        <div class="details">
+          DATE: <span class="highlight">7<sup>th</sup> May 2025</span>
+        </div>
+        <div class="details">
+          VENUE: <span class="venue">Mini Auditorium</span>
+        </div>
+      </div>
+      <div class="organized">
+        ORGANIZED BY:<br />
+        UTTRAKHAND TECHNICAL UNIVERSITY<br />
+      </div>
+      <div class="scan-lines"></div>
+    </div>
+    <script>
+      // Add animated stars/particles
+      const poster = document.querySelector(".poster");
+
+      // Clear existing stars
+      const existingStars = document.querySelectorAll(".star");
+      existingStars.forEach((star) => star.remove());
+
+      // Add new enhanced stars
+      for (let i = 0; i < 100; i++) {
+        const star = document.createElement("div");
+        star.className = "star";
+
+        // Varied sizes for more depth
+        const size = Math.random() * 3 + 0.5;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+
+        // Position randomly
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.left = `${Math.random() * 100}%`;
+
+        // Randomize opacity
+        star.style.opacity = Math.random() * 0.7 + 0.3;
+
+        // Randomize animation timing
+        star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        star.style.animationDelay = `${Math.random() * 2}s`;
+
+        poster.appendChild(star);
+      }
+
+      // Add occasional shooting stars
+      setInterval(() => {
+        const shootingStar = document.createElement("div");
+        shootingStar.style.position = "absolute";
+        shootingStar.style.width = "2px";
+        shootingStar.style.height = `${Math.random() * 80 + 100}px`;
+        shootingStar.style.transformOrigin = "center bottom";
+        shootingStar.style.top = `${Math.random() * 50}%`;
+        shootingStar.style.left = `${Math.random() * 100}%`;
+        shootingStar.style.background =
+          "linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.8))";
+        shootingStar.style.transform = `rotate(${Math.random() * 45 + 10}deg)`;
+        shootingStar.style.zIndex = "1";
+
+        // Animate the shooting star
+        shootingStar.animate(
+          [
+            {
+              opacity: 1,
+              transform: `rotate(${Math.random() * 45 + 10}deg) translateY(0)`,
+            },
+            {
+              opacity: 0,
+              transform: `rotate(${Math.random() * 45 + 10}deg) translateY(${
+                window.innerHeight
+              }px)`,
+            },
+          ],
+          {
+            duration: Math.random() * 1000 + 500,
+            easing: "cubic-bezier(0.42, 0, 0.58, 1)",
+          }
+        ).onfinish = () => shootingStar.remove();
+
+        poster.appendChild(shootingStar);
+      }, 3000);
+
+      // Add text glitch effect to the event title
+      const eventTitle = document.querySelector(".event-title");
+      const originalText = eventTitle.textContent;
+
+      // Randomly glitch the text
+      setInterval(() => {
+        if (Math.random() > 0.9) {
+          eventTitle.textContent = originalText
+            .split("")
+            .map((char) => {
+              return Math.random() > 0.9
+                ? String.fromCharCode(Math.floor(Math.random() * 26) + 65)
+                : char;
+            })
+            .join("");
+
+          // Reset after short delay
+          setTimeout(() => {
+            eventTitle.textContent = originalText;
+          }, 200);
+        }
+      }, 2000);
+    </script>
+  </body>
+</html>
